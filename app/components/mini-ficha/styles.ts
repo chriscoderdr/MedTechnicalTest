@@ -110,6 +110,7 @@ export const styles = StyleSheet.create({
         color: '#154FBF',
         marginBottom: 5,
     },
+    // Remove these now-unused styles:
     selector: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -118,14 +119,5 @@ export const styles = StyleSheet.create({
         borderColor: '#154FBF',
         borderRadius: 6,
         padding: 13,
-    },
-    selectorText: {
-        fontFamily: 'Overpass',
-        fontSize: 16,
-        color: '#719EC0',
-    },
-    selectorIcon: {
-        color: '#154FBF',
-        fontSize: 16,
     },
 });
