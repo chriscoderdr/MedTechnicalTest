@@ -1,14 +1,43 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { useGetEmergencyKindsQuery } from '@/app/store/emergencySlice';
 import { styles } from "./styles";
 import Dropdown from '../dropdown/dropdown';
 import { useState } from "react";
+import { ActivityIndicator } from "react-native";
 
 
 export default function MiniFicha() {
-    const { data: emergencyKinds } = useGetEmergencyKindsQuery({});
+    const { data: emergencyKinds, isLoading, isError, refetch } = useGetEmergencyKindsQuery({});
     const [selectedEmergency, setSelectedEmergency] = useState<string>();
+
+    if (isLoading) {
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#154FBF" />
+                <Text style={styles.loadingText}>Cargando información...</Text>
+            </View>
+        );
+    }
+
+    if (isError) {
+        return (
+            <View style={styles.errorContainer}>
+                <Text style={styles.errorText}>Error al cargar los datos</Text>
+                <TouchableOpacity onPress={refetch} style={styles.retryButton}>
+                    <Text style={styles.retryText}>Reintentar</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
+    if (!emergencyKinds?.length) {
+        return (
+            <View style={styles.emptyContainer}>
+                <Text style={styles.emptyText}>No hay tipos de emergencia disponibles</Text>
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>
