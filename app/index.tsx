@@ -6,7 +6,8 @@ import { Poppins_600SemiBold } from '@expo-google-fonts/poppins/600SemiBold';
 import { Poppins_700Bold } from '@expo-google-fonts/poppins/700Bold';
 import { Provider } from 'react-redux';
 import { store } from '@/src/store/store';
-import MiniFicha from "./components/mini-ficha/mini-ficha";
+import MiniFicha from "@/src/components/mini-ficha/mini-ficha";
+
 
 export default function Home() {
     let [fontsLoaded] = useFonts({

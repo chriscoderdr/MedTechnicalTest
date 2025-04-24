@@ -5,12 +5,17 @@ import { styles } from "./styles";
 import Dropdown from '../dropdown/dropdown';
 import { useState } from "react";
 import { ActivityIndicator } from "react-native";
+import { useGetPatientDataQuery } from "@/src/store/patientSlice";
+import { useGetMockPatientData } from "@/src/hooks/useMockPatientData";
+
 
 
 export default function MiniFicha() {
     const { data: emergencyKinds, isLoading, isError, refetch } = useGetEmergencyKindsQuery({});
     const [selectedEmergency, setSelectedEmergency] = useState<string>();
+    const { data: patientData } = useGetMockPatientData();
 
+    console.log('patientData', patientData);
 
     return (
         <View style={styles.container}>
@@ -25,7 +30,7 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 50,
                         height: 50,
-                    }} source={require('@/app/assets/icons/icon_bone.svg')} />
+                    }} source={require('@/assets/icons/icon_bone.svg')} />
                 </View>
             </View>
 
@@ -34,38 +39,38 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/assets/icons/icon_face.svg')} />
+                    }} source={require('@/assets/icons/icon_face.svg')} />
                 </View>
                 <View style={styles.patientDetails}>
-                    <Text style={styles.patientName}>Jorge Avendaño Pérez</Text>
-                    <Text style={styles.patientAge}>35 años</Text>
+                    <Text style={styles.patientName}>{patientData?.name || ''}</Text>
+                    <Text style={styles.patientAge}>{patientData?.age || ''}</Text>
                 </View>
             </View>
 
             <View style={styles.medicalRecordContainer}>
                 <View style={styles.medicalRecordRow}>
-                    <Text style={styles.medicalRecordLabel}> tFicha médica: </Text>
-                    <Text style={styles.medicalRecordText}>77884</Text>
+                    <Text style={styles.medicalRecordLabel}>Ficha médica: </Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.id || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Diagnóstico: </Text>
-                    <Text style={styles.medicalRecordText}>Calcificación Talón</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.diagnosis || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Intervención: </Text>
-                    <Text style={styles.medicalRecordText}>Extirpación en talón</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.intervention || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Evaluación preanestésica: </Text>
-                    <Text style={styles.medicalRecordText}>Sí</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.evaluation || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Tiempo de solicitud: </Text>
-                    <Text style={styles.medicalRecordText}>3 días</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.requestTime || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Suspensiones: </Text>
-                    <Text style={styles.medicalRecordText}>2</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.suspensions || ''}</Text>
                 </View>
             </View>
 
@@ -76,21 +81,21 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/assets/icons/icon_cardio.svg')} />
+                    }} source={require('@/assets/icons/icon_cardio.svg')} />
 
                 </View>
                 <View style={styles.iconItem}>
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/assets/icons/icon_anestesia.svg')} />
+                    }} source={require('@/assets/icons/icon_anestesia.svg')} />
                 </View>
             </View>
 
 
             <View style={styles.selectorContainer}>
                 <Text style={styles.selectorLabel}>Tipo de Urgencia</Text>
-                
+
                 {isLoading ? (
                     <View style={styles.loadingContainer}>
                         <ActivityIndicator size="small" color="#154FBF" />

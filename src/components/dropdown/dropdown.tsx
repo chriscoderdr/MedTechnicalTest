@@ -24,7 +24,7 @@ export default function Dropdown({ options, selectedValue, onSelect, style }: Dr
         </Text>
         <Image
           style={styles.selectorIcon}
-          source={require('@/app/icons/right_icon.svg')}
+          source={require('@/assets/icons/right_icon.svg')}
         />
       </TouchableOpacity>
 
