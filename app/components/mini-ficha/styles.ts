@@ -120,4 +120,51 @@ export const styles = StyleSheet.create({
         borderRadius: 6,
         padding: 13,
     },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    loadingText: {
+        marginTop: 16,
+        fontFamily: 'Poppins_500Medium',
+        color: '#154FBF',
+        fontSize: 16,
+    },
+    errorContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    errorText: {
+        fontFamily: 'Poppins_600SemiBold',
+        color: '#FF3B30',
+        fontSize: 16,
+        marginBottom: 16,
+    },
+    retryButton: {
+        backgroundColor: '#154FBF',
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 6,
+    },
+    retryText: {
+        fontFamily: 'Poppins_500Medium',
+        color: 'white',
+        fontSize: 14,
+    },
+    emptyContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    emptyText: {
+        fontFamily: 'Poppins_500Medium',
+        color: '#719EC0',
+        fontSize: 16,
+        textAlign: 'center',
+    },
 });
