@@ -5,7 +5,6 @@ import { styles } from "./styles";
 import Dropdown from '../dropdown/dropdown';
 import { useState } from "react";
 import { ActivityIndicator } from "react-native";
-import { useGetPatientDataQuery } from "@/src/store/patientSlice";
 import { useGetMockPatientData } from "@/src/hooks/useMockPatientData";
 
 
@@ -14,8 +13,6 @@ export default function MiniFicha() {
     const { data: emergencyKinds, isLoading, isError, refetch } = useGetEmergencyKindsQuery({});
     const [selectedEmergency, setSelectedEmergency] = useState<string>();
     const { data: patientData } = useGetMockPatientData();
-
-    console.log('patientData', patientData);
 
     return (
         <View style={styles.container}>
@@ -50,27 +47,27 @@ export default function MiniFicha() {
             <View style={styles.medicalRecordContainer}>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Ficha médica: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.id || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.id || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Diagnóstico: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.diagnosis || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.diagnosis || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Intervención: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.intervention || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.intervention || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Evaluación preanestésica: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.evaluation || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.valuation || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Tiempo de solicitud: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.requestTime || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.requestTime || ''}</Text>
                 </View>
                 <View style={styles.medicalRecordRow}>
                     <Text style={styles.medicalRecordLabel}>Suspensiones: </Text>
-                    <Text style={styles.medicalRecordText}>{patientData?.suspensions || ''}</Text>
+                    <Text style={styles.medicalRecordText}>{patientData?.medicalRecord.suspensions || ''}</Text>
                 </View>
             </View>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as FileSystem from 'expo-file-system';
+import { mockPatientData } from '@/mock-data/patien-mock-data';
 
 export const useGetMockPatientData = () => {
   const [patientData, setPatientData] = useState<any>(null);
@@ -13,18 +13,15 @@ export const useGetMockPatientData = () => {
       
       // Add artificial delay
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      const content = await FileSystem.readAsStringAsync(
-        FileSystem.documentDirectory + '../mock-data/patient-data.json'
-      );
-      const jsonData = JSON.parse(content);
-      setPatientData(jsonData.patientData);
+      setPatientData(mockPatientData);
+      console.log('Patient Data:', mockPatientData); // Log the patient data to the termina
     } catch (error) {
       setIsError(true);
     } finally {
       setIsLoading(false);
     }
   };
+
 
   useEffect(() => {
     refetch();
