@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
-import { useGetEmergencyKindsQuery } from '@/app/features/emergency/emergencySlice';
+import { useGetEmergencyKindsQuery } from '@/app/store/emergencySlice';
 import { styles } from "./styles";
 
 
