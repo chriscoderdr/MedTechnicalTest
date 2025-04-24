@@ -10,11 +10,8 @@ export const useGetMockPatientData = () => {
     try {
       setIsLoading(true);
       setIsError(false);
-      
-      // Add artificial delay
       await new Promise(resolve => setTimeout(resolve, 1500));
       setPatientData(mockPatientData);
-      console.log('Patient Data:', mockPatientData); // Log the patient data to the termina
     } catch (error) {
       setIsError(true);
     } finally {
