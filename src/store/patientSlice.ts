@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Patient } from '../types/types';
 
 export const patientApi = createApi({
   reducerPath: 'patientApi',
@@ -13,17 +14,5 @@ export const patientApi = createApi({
   }),
 });
 
-export type Patient = {
-  name: string;
-  age: string;
-  medicalRecord: {
-    id: string;
-    diagnosis: string;
-    intervention: string;
-    evaluation: string;
-    requestTime: string;
-    suspensions: string;
-  };
-};
 
 export const { useGetPatientDataQuery } = patientApi;
