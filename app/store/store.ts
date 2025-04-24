@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { emergencyApi } from '../../app/features/emergency/emergencySlice';
+import { emergencyApi } from './emergencySlice';
 
 export const store = configureStore({
   reducer: {
