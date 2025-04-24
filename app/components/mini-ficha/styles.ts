@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/src/constants/Colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -104,67 +104,54 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
     },
     selectorLabel: {
-        fontFamily: 'Poppins',
-        fontWeight: '500',
+        fontFamily: 'Poppins_500Medium',
         fontSize: 14,
         color: '#154FBF',
-        marginBottom: 5,
-    },
-    // Remove these now-unused styles:
-    selector: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#154FBF',
-        borderRadius: 6,
-        padding: 13,
+        marginBottom: 8,
     },
     loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
+        gap: 8,
+        paddingVertical: 12,
     },
     loadingText: {
-        marginTop: 16,
-        fontFamily: 'Poppins_500Medium',
-        color: '#154FBF',
-        fontSize: 16,
+        fontFamily: 'Poppins_400Regular',
+        fontSize: 14,
+        color: '#719EC0',
     },
     errorContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
+        borderWidth: 1,
+        borderColor: '#FF3B3050',
+        borderRadius: 6,
+        padding: 12,
+        backgroundColor: '#FF3B3010',
+        gap: 8,
     },
     errorText: {
-        fontFamily: 'Poppins_600SemiBold',
+        fontFamily: 'Poppins_500Medium',
         color: '#FF3B30',
-        fontSize: 16,
-        marginBottom: 16,
+        fontSize: 14,
     },
     retryButton: {
-        backgroundColor: '#154FBF',
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 6,
+        alignSelf: 'flex-start',
     },
     retryText: {
         fontFamily: 'Poppins_500Medium',
-        color: 'white',
+        color: '#154FBF',
         fontSize: 14,
+        textDecorationLine: 'underline',
+    },
+    emptyText: {
+        fontFamily: 'Poppins_400Regular',
+        color: '#719EC0',
+        fontSize: 14,
+        paddingVertical: 12,
     },
     emptyContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-    },
-    emptyText: {
-        fontFamily: 'Poppins_500Medium',
-        color: '#719EC0',
-        fontSize: 16,
-        textAlign: 'center',
-    },
+    }, 
 });

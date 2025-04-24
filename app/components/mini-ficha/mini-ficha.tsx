@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { useGetEmergencyKindsQuery } from '@/app/store/emergencySlice';
+import { useGetEmergencyKindsQuery } from '@/src/store/emergencySlice';
 import { styles } from "./styles";
 import Dropdown from '../dropdown/dropdown';
 import { useState } from "react";
@@ -11,33 +11,6 @@ export default function MiniFicha() {
     const { data: emergencyKinds, isLoading, isError, refetch } = useGetEmergencyKindsQuery({});
     const [selectedEmergency, setSelectedEmergency] = useState<string>();
 
-    if (isLoading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#154FBF" />
-                <Text style={styles.loadingText}>Cargando información...</Text>
-            </View>
-        );
-    }
-
-    if (isError) {
-        return (
-            <View style={styles.errorContainer}>
-                <Text style={styles.errorText}>Error al cargar los datos</Text>
-                <TouchableOpacity onPress={refetch} style={styles.retryButton}>
-                    <Text style={styles.retryText}>Reintentar</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    }
-
-    if (!emergencyKinds?.length) {
-        return (
-            <View style={styles.emptyContainer}>
-                <Text style={styles.emptyText}>No hay tipos de emergencia disponibles</Text>
-            </View>
-        );
-    }
 
     return (
         <View style={styles.container}>
@@ -52,7 +25,7 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 50,
                         height: 50,
-                    }} source={require('@/app/icons/icon_bone.svg')} />
+                    }} source={require('@/app/assets/icons/icon_bone.svg')} />
                 </View>
             </View>
 
@@ -61,7 +34,7 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/icons/icon_face.svg')} />
+                    }} source={require('@/app/assets/icons/icon_face.svg')} />
                 </View>
                 <View style={styles.patientDetails}>
                     <Text style={styles.patientName}>Jorge Avendaño Pérez</Text>
@@ -103,25 +76,42 @@ export default function MiniFicha() {
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/icons/icon_cardio.svg')} />
+                    }} source={require('@/app/assets/icons/icon_cardio.svg')} />
 
                 </View>
                 <View style={styles.iconItem}>
                     <Image style={{
                         width: 24,
                         height: 24,
-                    }} source={require('@/app/icons/icon_anestesia.svg')} />
+                    }} source={require('@/app/assets/icons/icon_anestesia.svg')} />
                 </View>
             </View>
 
 
             <View style={styles.selectorContainer}>
                 <Text style={styles.selectorLabel}>Tipo de Urgencia</Text>
-                <Dropdown
-                    options={emergencyKinds || []}
-                    selectedValue={selectedEmergency}
-                    onSelect={setSelectedEmergency}
-                />
+                
+                {isLoading ? (
+                    <View style={styles.loadingContainer}>
+                        <ActivityIndicator size="small" color="#154FBF" />
+                        <Text style={styles.loadingText}>Cargando...</Text>
+                    </View>
+                ) : isError ? (
+                    <View style={styles.errorContainer}>
+                        <Text style={styles.errorText}>⚠️ Error de conexión</Text>
+                        <TouchableOpacity onPress={refetch} style={styles.retryButton}>
+                            <Text style={styles.retryText}>Reintentar</Text>
+                        </TouchableOpacity>
+                    </View>
+                ) : !emergencyKinds?.length ? (
+                    <Text style={styles.emptyText}>No disponible</Text>
+                ) : (
+                    <Dropdown
+                        options={emergencyKinds}
+                        selectedValue={selectedEmergency}
+                        onSelect={setSelectedEmergency}
+                    />
+                )}
             </View>
         </View>
     );
