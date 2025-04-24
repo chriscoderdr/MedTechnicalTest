@@ -2,10 +2,14 @@ import { View, Text } from "react-native";
 import { Image } from "expo-image";
 import { useGetEmergencyKindsQuery } from '@/app/store/emergencySlice';
 import { styles } from "./styles";
+import Dropdown from '../dropdown/dropdown';
+import { useState } from "react";
 
 
 export default function MiniFicha() {
     const { data: emergencyKinds } = useGetEmergencyKindsQuery({});
+    const [selectedEmergency, setSelectedEmergency] = useState<string>();
+
     return (
         <View style={styles.container}>
 
@@ -84,15 +88,11 @@ export default function MiniFicha() {
 
             <View style={styles.selectorContainer}>
                 <Text style={styles.selectorLabel}>Tipo de Urgencia</Text>
-                <View style={styles.selector}>
-                    <Text style={styles.selectorText}>
-                        {emergencyKinds?.[0]?.name || 'Seleccionar'}
-                    </Text>
-                    <Image style={{
-                        width: 16,
-                        height: 16,
-                    }} source={require('@/app/icons/right_icon.svg')} />
-                </View>
+                <Dropdown
+                    options={emergencyKinds || []}
+                    selectedValue={selectedEmergency}
+                    onSelect={setSelectedEmergency}
+                />
             </View>
         </View>
     );
